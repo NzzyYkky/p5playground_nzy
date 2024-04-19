@@ -20,22 +20,23 @@ class Jitter {
 		this.x += this.p.random(-this.speed, this.speed);
 		this.y += this.p.random(-this.speed, this.speed);
 	}
+}
 
+class JitterEllipse extends Jitter {
 	display() {
 		this.p.ellipse(this.x, this.y, this.diameter);
 	}
 }
 
 const sketch = (p: p5) => {
-	let jitter: Jitter;
-	let bugs: Jitter[] = [];
+	let bugs: JitterEllipse[] = [];
 
 	p.setup = () => {
 		// p.frameRate(10);
 		p.createCanvas(innerWidth, innerHeight);
 		p.colorMode(p.HSB);
 		for (let i = 0; i < p.random(100, 1000); i++) {
-			bugs.push(new Jitter(p));
+			bugs.push(new JitterEllipse(p));
 		}
 	};
 
