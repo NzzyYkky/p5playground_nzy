@@ -1,6 +1,14 @@
 import p5 from 'p5';
 
-class Jitter {
+interface Jitter {
+	move(): void;
+}
+
+interface JitterEllipse {
+	display(): void;
+}
+
+class Jitter implements Jitter {
 	// プロパティ
 	x: number;
 	y: number;
@@ -22,7 +30,7 @@ class Jitter {
 	}
 }
 
-class JitterEllipse extends Jitter {
+class JitterEllipse extends Jitter implements JitterEllipse {
 	display() {
 		this.p.ellipse(this.x, this.y, this.diameter);
 	}
