@@ -4,7 +4,7 @@ interface Jitter {
 	move(): void;
 }
 
-interface JitterEllipse {
+interface JitterShape {
 	display(): void;
 }
 
@@ -30,29 +30,37 @@ class Jitter implements Jitter {
 	}
 }
 
-class JitterEllipse extends Jitter implements JitterEllipse {
+class JitterEllipse extends Jitter implements JitterShape {
 	display() {
 		this.p.ellipse(this.x, this.y, this.diameter);
 	}
 }
 
+class JitterRect extends Jitter implements JitterShape {
+	display() {
+		this.p.rect(this.x, this.y, this.diameter);
+	}
+}
+
 const sketch = (p: p5) => {
-	let bugs: JitterEllipse[] = [];
+	let shapes: (JitterEllipse | JitterRect)[] = [];
 
 	p.setup = () => {
 		// p.frameRate(10);
 		p.createCanvas(innerWidth, innerHeight);
 		p.colorMode(p.HSB);
 		for (let i = 0; i < p.random(100, 1000); i++) {
-			bugs.push(new JitterEllipse(p));
+			shapes.push(
+				Math.random() < 0.5 ? new JitterEllipse(p) : new JitterRect(p)
+			);
 		}
 	};
 
 	p.draw = () => {
 		p.background('#fff');
-		bugs.forEach((bug) => {
-			bug.move();
-			bug.display();
+		shapes.forEach((shape) => {
+			shape.move();
+			shape.display();
 		});
 	};
 };
