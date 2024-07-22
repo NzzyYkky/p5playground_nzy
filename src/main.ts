@@ -3,7 +3,7 @@ import './style.css';
 // import { MouseEvent } from './module/mouse-event';
 // import { Keyboard } from './module/keyboard';
 // import { ExampleClass } from './module/example-class';
-import { VectorPractice } from './module/vector-practice';
+import { MotionEquation } from './module/motion-equation';
 
 const eventHandler = () => {
 	document.addEventListener('DOMContentLoaded', () => {
@@ -11,6 +11,7 @@ const eventHandler = () => {
 		// MouseEvent;
 		// Keyboard;
 		// ExampleClass;
-		VectorPractice;
+		// VectorPractice;
+		MotionEquation;
 	});
 };
